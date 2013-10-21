@@ -5,9 +5,9 @@
         "url": "https://github.com/nclavaud/JSONPath-1",
         "type": "git"
     },
-    "require": [
+    "require": {
         "pear-pear.php.net/Services_JSON": "*",
-    ],
+    },
     "repositories": [
         {
             "type": "pear",
