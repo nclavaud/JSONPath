@@ -1,11 +1,10 @@
 {
     "name": "nclavaud/jsonpath",
-    "version": "0.1.0",
-    "source": {
-        "url": "https://github.com/nclavaud/JSONPath-1",
-        "type": "git"
-    },
-    "require": {
+    "description": "XPath for JSON",
+    "homepage": "https://github.com/nclavaud/JSONPath-1",
+    "type": "library",
+    "license": "MIT",
+    "require-dev": {
         "pear-pear.php.net/Services_JSON": "*"
     },
     "repositories": [
@@ -13,6 +12,11 @@
             "type": "pear",
             "url": "http://pear.php.net"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-0": {
+            "JsonPath": "lib/"
+        }
+    }
 }
 

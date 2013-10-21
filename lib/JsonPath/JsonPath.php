@@ -6,7 +6,7 @@
  * Licensed under the MIT (MIT-LICENSE.txt) licence.
  */
 
-namespace Lrqdo\Infrastructure\JsonPath;
+namespace JsonPath;
 
 class JsonPath
 {
@@ -31,7 +31,7 @@ class JsonPath
     }
 
     // normalize path expression
-    function normalize($x)
+    private function normalize($x)
     {
         $x = preg_replace_callback(array("/[\['](\??\(.*?\))[\]']/", "/\['(.*?)'\]/"), array(&$this, "_callback_01"), $x);
         $x = preg_replace(array("/'?\.'?|\['?/", "/;;;|;;/", "/;$|'?\]|'$/"), array(";", ";..;", ""), $x);
@@ -41,17 +41,17 @@ class JsonPath
         return $x;
     }
 
-    function _callback_01($m)
+    private function _callback_01($m)
     {
         return "[#" . (array_push($this->result, $m[1]) - 1) . "]";
     }
 
-    function _callback_02($m)
+    private function _callback_02($m)
     {
         return $this->result[$m[1]];
     }
 
-    function asPath($path)
+    private function asPath($path)
     {
         $x = explode(";", $path);
         $p = "$";
@@ -62,7 +62,7 @@ class JsonPath
         return $p;
     }
 
-    function store($p, $v)
+    private function store($p, $v)
     {
         if ($p) {
             array_push($this->result, ($this->resultType == "PATH" ? $this->asPath($p) : $v));
@@ -71,7 +71,7 @@ class JsonPath
         return !!$p;
     }
 
-    function trace($expr, $val, $path)
+    private function trace($expr, $val, $path)
     {
         if ($expr !== "") {
             $x = explode(";", $expr);
@@ -102,33 +102,33 @@ class JsonPath
         }
     }
 
-    function _callback_03($m, $l, $x, $v, $p)
+    private function _callback_03($m, $l, $x, $v, $p)
     {
         $this->trace($m . ";" . $x, $v, $p);
     }
 
-    function _callback_04($m, $l, $x, $v, $p)
+    private function _callback_04($m, $l, $x, $v, $p)
     {
         if (is_array($v[$m])) {
             $this->trace("..;" . $x, $v[$m], $p . ";" . $m);
         }
     }
 
-    function _callback_05($m, $l, $x, $v, $p)
+    private function _callback_05($m, $l, $x, $v, $p)
     {
         if ($this->evalx(preg_replace("/^\?\((.*?)\)$/", "$1", $l), $v[$m])) {
             $this->trace($m . ";" . $x, $v, $p);
         }
     }
 
-    function walk($loc, $expr, $val, $path, $f)
+    private function walk($loc, $expr, $val, $path, $f)
     {
         foreach ($val as $m => $v) {
             call_user_func($f, $m, $loc, $expr, $val, $path);
         }
     }
 
-    function slice($loc, $expr, $v, $path)
+    private function slice($loc, $expr, $v, $path)
     {
         $s = explode(":", preg_replace("/^(-?[0-9]*):(-?[0-9]*):?(-?[0-9]*)$/", "$1:$2:$3", $loc));
         $len = count($v);
@@ -142,7 +142,7 @@ class JsonPath
         }
     }
 
-    function evalx($x, $v, $vname = null)
+    private function evalx($x, $v, $vname = null)
     {
         $name = "";
         $expr = preg_replace(array("/\\$/", "/@/"), array("\$this->obj", "\$v"), $x);
@@ -156,3 +156,4 @@ class JsonPath
         }
     }
 }
+
