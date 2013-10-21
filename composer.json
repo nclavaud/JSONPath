@@ -4,7 +4,7 @@
     "homepage": "https://github.com/nclavaud/JSONPath-1",
     "type": "library",
     "license": "MIT",
-    "require-dev": {
+    "require": {
         "pear-pear.php.net/Services_JSON": "*"
     },
     "repositories": [
