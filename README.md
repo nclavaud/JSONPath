@@ -1,4 +1,12 @@
 JSONPath
 ========
 
-JSONPath php implementation forked from http://code.google.com/p/jsonpath/source/browse/trunk/src/php/jsonpath.php
+JSONPath PHP implementation forked from Stefan Goessner's JSONPath project.
+
+Website: http://goessner.net/articles/JsonPath/
+
+Code: http://code.google.com/p/jsonpath/
+
+Dependencies:
+
+* http://pear.php.net/package/Services_JSON/

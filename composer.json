@@ -1,7 +1,7 @@
 {
     "name": "nclavaud/jsonpath",
     "description": "XPath for JSON",
-    "homepage": "https://github.com/nclavaud/JSONPath-1",
+    "homepage": "https://github.com/nclavaud/JSONPath",
     "type": "library",
     "license": "MIT",
     "require": {
@@ -19,4 +19,3 @@
         }
     }
 }
-
