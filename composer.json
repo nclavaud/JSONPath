@@ -6,7 +6,7 @@
         "type": "git"
     },
     "require": {
-        "pear-pear.php.net/Services_JSON": "*",
+        "pear-pear.php.net/Services_JSON": "*"
     },
     "repositories": [
         {
